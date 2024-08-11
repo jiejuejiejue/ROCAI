@@ -147,27 +147,6 @@ def run_command(command):
 #创建网页
 st.title("☁礼貌用语检测器")
 
-with st.sidebar:
-    # 初始化session state
-    if 'logged_in' not in st.session_state:
-        st.session_state.logged_in = False
-
-    # 用户名和密码输入
-    username = st.sidebar.text_input('用户名')
-    password = st.sidebar.text_input('密码', type='password')
-
-    # 登录按钮
-    if st.sidebar.button('登录'):
-    # 这里可以添加验证逻辑，例如检查用户名和密码是否正确
-        if username == 'admin' and password == '12345':
-            st.session_state.logged_in = True
-            st.sidebar.success('登录成功！')
-    
-
-        else:
-            st.error('用户名或密码错误，请重试。')
-            st.stop()
-
 #清空消息
 clear = st.button("清除")
 if clear:
@@ -188,7 +167,7 @@ for message in st.session_state['message']:
 text = st.chat_input()
 
 #运行
-if text and st.session_state.logged_in == True:
+if text:
     #将问题保存进message和memory
     st.session_state["message"].append({"role": "human", "content": text})
     st.session_state["memory"].append(text)
@@ -202,6 +181,3 @@ if text and st.session_state.logged_in == True:
     st.session_state["memory"].append(result)
     st.chat_message("ai").write(result)
     
-elif text and st.session_state.logged_in == False:
-    st.error('请先登录！')
-    st.stop()
