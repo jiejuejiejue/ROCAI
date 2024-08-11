@@ -142,28 +142,6 @@ def load_models_and_predict(text, device):
 # 页面配置
 st.set_page_config(page_title="文件式文本检测工具")
 st.title("批量检测攻击性和偏见")
-
-with st.sidebar:
-    # 初始化session state
-    if 'logged_in' not in st.session_state:
-        st.session_state.logged_in = False
-
-    # 用户名和密码输入
-    username = st.sidebar.text_input('用户名')
-    password = st.sidebar.text_input('密码', type='password')
-
-    # 登录按钮
-    if st.sidebar.button('登录'):
-    # 这里可以添加验证逻辑，例如检查用户名和密码是否正确
-        if username == 'admin' and password == '12345':
-            st.session_state.logged_in = True
-            st.sidebar.success('登录成功！')
-    
-
-        else:
-            st.error('用户名或密码错误，请重试。')
-            st.stop()
-    st.divider()
         
 # 文件上传
 file = st.file_uploader("上传你的CSV文件", type=["csv"])
