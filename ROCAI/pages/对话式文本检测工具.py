@@ -78,10 +78,8 @@ class Model(nn.Module):
     
 def load_models_and_predict(text, device):
     # 加载模型
-    MacBERT_base_CDialBias = torch.load('ROCAI\models\MacBERT-base-CDialBias.pth')
-    MacBERT_base_CDialBias.to(device)
-    MacBERT_base_COLD = torch.load('ROCAI\models\MacBERT-base-COLD.pth')
-    MacBERT_base_COLD.to(device)
+    MacBERT_base_CDialBias = torch.load('ROCAI/models/MacBERT-base-CDialBias.pth', map_location=torch.device('cpu'))
+    MacBERT_base_COLD = torch.load('ROCAI/models/MacBERT-base-COLD.pth', map_location=torch.device('cpu'))
 
     # 获取密钥和ID
     os.environ['APPBUILDER_TOKEN'] = "bce-v3/ALTAK-n2XgeA6FS3Q5E7Jab6UwE/850b44ebec64c4cad705986ab0b5e3df4b05d407"
